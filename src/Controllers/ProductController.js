@@ -31,8 +31,18 @@ class ProductController {
 
     }
 
-    async update(){
+    async update(req, res){
+        try {
+            const { id } = req.params;
 
+            await ProductModel.findByIdAndUpdate(id, req.body);
+
+            res.status(200).json({message: "Product updated successfully!"});
+
+        } catch (error) {
+
+            res.status(404).json({message: "Verify product Id!"});
+        }
     }
 
     async destroy(){
