@@ -14,7 +14,8 @@ class ProductController {
     }
 
     async show(req, res){
-        const { id } = req.params;
+        try {
+            const { id } = req.params;
 
         const product = await ProductModel.findById(id);
 
@@ -23,6 +24,10 @@ class ProductController {
         }
 
         return res.status(200).json( product );
+
+        } catch (error) {
+            res.status(404).json({message: "Verify product Id!"});
+        }
 
     }
 
