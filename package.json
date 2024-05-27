@@ -1,18 +1,21 @@
 {
   "name": "projdef",
   "version": "1.0.0",
-  "description": "",
+  "description": "Projeto Definitivo",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Vinicius Arantes",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.1.0"
   },
   "dependencies": {
-    "express": "^4.19.2"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.0"
   }
 }
