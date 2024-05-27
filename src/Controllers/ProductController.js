@@ -2,13 +2,19 @@ const ProductModel = require('../Models/ProductModels');
 
 class ProductController {
     async store(req, res){
-        const createdProduct = await ProductModel.create(req.body);
 
         const { title, description, price} = req.body;
 
         if(!title || !description  || !price){
-            res.status(404).json({message: "Some information is missing!"})
+            res.status(404).json({message: "Some information is missing!"});
         }
+
+        const usedTitle = ProductModel.findOne({ title });
+        if(usedTitle){
+            return res.status(404).json({message: "This title has already been used!"})
+        }
+
+        const createdProduct = await ProductModel.create(req.body);
 
         return res.status(200).json({ message: 'Product added successfully!'});
     }
