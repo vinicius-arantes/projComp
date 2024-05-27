@@ -4,6 +4,12 @@ class ProductController {
     async store(req, res){
         const createdProduct = await ProductModel.create(req.body);
 
+        const { title, description, price} = req.body;
+
+        if(!title || !description  || !price){
+            res.status(404).json({message: "Some information is missing!"})
+        }
+
         return res.status(200).json({ message: 'Product added successfully!'});
     }
 
@@ -45,8 +51,18 @@ class ProductController {
         }
     }
 
-    async destroy(){
+    async destroy(req, res){
+        try {
+            const { id } = req.params;
 
+            await ProductModel.findByIdAndDelete(id);
+
+            res.status(200).json({message: "Product deleted successfully!"});
+
+        } catch (error) {
+
+            res.status(404).json({message: "Verify product Id!"});
+        }
     }
 }
 
