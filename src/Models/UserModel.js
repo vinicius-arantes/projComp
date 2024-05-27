@@ -5,11 +5,15 @@ const ObjectId = Schema.ObjectId;
 
 const UserSchema = new Schema({
     id: ObjectId,
-    title: String,
+    user_name: String,
+    password: Number,
+    email: String,
     description: String,
-    price: Number
+    avatar: String,
+    bio: String,
+    age: Number
 });
 
-const UserModel = mongoose.model('products', UserSchema);
+const UserModel = mongoose.model('users', UserSchema);
 
 module.exports = UserModel;
