@@ -9,11 +9,6 @@ class ProductController {
             res.status(404).json({message: "Some information is missing!"});
         }
 
-        const usedTitle = ProductModel.findOne({ title });
-        if(usedTitle){
-            return res.status(404).json({message: "This title has already been used!"})
-        }
-
         const createdProduct = await ProductModel.create(req.body);
 
         return res.status(200).json({ message: 'Product added successfully!'});
