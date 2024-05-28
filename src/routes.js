@@ -2,6 +2,7 @@ const { Router } = require('express');
 const schemaValidator = require('./Middlewares/schemaValidator');
 
 const ProductController = require('./Controllers/ProductController');
+const productSchema = require('./schema/create.product.schema.json');
 
 const UserController = require('./Controllers/UserController');
 const userSchema = require('./schema/create.user.schema.json');
@@ -12,7 +13,7 @@ routes.get('/health', (req, res) => {
     return res.status(200).json({ message: "Server is on..." });
 });
 
-routes.post('/products', ProductController.store);
+routes.post('/products', schemaValidator(productSchema), ProductController.store);
 
 routes.get('/products', ProductController.index);
 
