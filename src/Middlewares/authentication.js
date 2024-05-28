@@ -1,4 +1,4 @@
-const { decryptedToken } = require('../../utils/token');
+const { decryptedToken } = require('../utils/token');
 
 const verifyJwt = async (req, res, next) => {
   const authHeader = req.headers.authorization;
