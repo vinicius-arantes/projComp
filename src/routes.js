@@ -1,7 +1,10 @@
 const { Router } = require('express');
+const schemaValidator = require('./Middlewares/schemaValidator');
 
 const ProductController = require('./Controllers/ProductController');
+
 const UserController = require('./Controllers/UserController');
+const userSchema = require('./schema/create.user.schema.json');
 
 const routes = new Router();
 
@@ -19,14 +22,14 @@ routes.put('/products/:id', ProductController.update);
 
 routes.delete('/products/:id', ProductController.destroy);
 
-routes.post('/products', UserController.store);
+routes.post('/users', schemaValidator(userSchema), UserController.store);
 
-routes.get('/products', UserController.index);
+routes.get('/users', UserController.index);
 
-routes.get('/products/:id', UserController.show);
+routes.get('/users/:id', UserController.show);
 
-routes.put('/products/:id', UserController.update);
+routes.put('/users/:id', UserController.update);
 
-routes.delete('/products/:id', UserController.destroy);
+routes.delete('/users/:id', UserController.destroy);
 
 module.exports = routes;
