@@ -17,6 +17,8 @@ _Foram definidas duas entidades:_
 - Usuários
 - Produtos
 
+> As duas entidades se relacionam pelo "chefId", que faz referência ao usuário responsável pela produção do produto em questão.
+
 ### **_Bibliografia_**
 
 _Foram utilizadas as seguintes dependências:_
