@@ -7,6 +7,14 @@ const UserSchema = new Schema({
     id: ObjectId,
     user_name: String,
     password: String,
+    passwordResetToken: {
+        type: String,
+        select: false,
+    },
+    passwordResetExpires: {
+        type: Date,
+        select: false,
+    },
     email: String,
     avatar: String,
     bio: String,

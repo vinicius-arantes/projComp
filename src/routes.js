@@ -36,6 +36,8 @@ routes.delete('/users/:id', UserController.destroy);
 
 routes.use(AuthenticationMiddleware);
 
+routes.post('/forgot_password', UserController.rescue);
+
 routes.post('/upload', upload.single('image'), FileController.upload);
 
 

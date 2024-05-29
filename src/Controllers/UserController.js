@@ -1,4 +1,6 @@
 const UserModel = require('../Models/UserModel');
+const crypto = require('crypto');
+const mailer = require('../modules/mailer');
 
 class UserController {
     async store(req, res){
@@ -63,6 +65,46 @@ class UserController {
         } catch (error) {
 
             res.status(404).json({message: "Verify user Id!"});
+        }
+    }
+
+    async rescue(req, res){
+        const { email } = req.body;
+
+        try {
+
+            const user = await UserModel.findOne({ email });
+            
+            if(!user){
+                return res.status(400).json({ message: "User not found!"});
+            }
+
+            const token = crypto.randomBytes(20).toString('hex');
+
+            const now = new Date();
+            now.setHours(now.getHours() + 1);
+
+            await UserModel.findByIdAndUpdate(user.id, {
+                '$set': {
+                    passwordResetToken: token,
+                    passwordResetExpires: now,
+                }
+            });
+
+            mailer.sendMail({
+                to: email,
+                from: 'vinicius.arantes@compjunior.com.br',
+                template: 'auth/forgot_password',
+                context: { token },
+            }, (err) => {
+                if(err){
+                    console.log(err);
+                    return res.status(400).json({ message: 'Cannot send forgot password email!'});
+                }
+                return res.status(200).json({ message: "Email sent successfully!"});
+            })
+        } catch (error) {
+            return res.status(400).send({ message: "Unable to change the password!"}); 
         }
     }
 }
