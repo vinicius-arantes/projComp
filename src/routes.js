@@ -34,8 +34,9 @@ routes.get('/users/:id', UserController.show);
 routes.put('/users/:id', UserController.update);
 routes.delete('/users/:id', UserController.destroy);
 
+routes.use(AuthenticationMiddleware);
+
 routes.post('/upload', upload.single('image'), FileController.upload);
 
-routes.use(AuthenticationMiddleware);
 
 module.exports = routes;

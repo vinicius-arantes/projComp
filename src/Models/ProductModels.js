@@ -7,7 +7,9 @@ const ProductSchema = new Schema({
     id: ObjectId,
     title: String,
     description: String,
-    price: Number
+    price: Number,
+    image: String,
+    chef_id: String
 });
 
 const ProductModel = mongoose.model('products', ProductSchema);
