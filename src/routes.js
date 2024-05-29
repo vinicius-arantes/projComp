@@ -22,19 +22,23 @@ routes.get('/health', (req, res) => {
 });
 
 routes.post('/auth', schemaValidator(authSchema), AuthenticationController.authenticate);
-routes.post('/products', schemaValidator(productSchema), ProductController.store);
+
+
 routes.get('/products', ProductController.index);
 routes.get('/products/:id', ProductController.show);
-routes.put('/products/:id', ProductController.update);
-routes.delete('/products/:id', ProductController.destroy);
 
 routes.post('/users', schemaValidator(userSchema), UserController.store);
 routes.get('/users', UserController.index);
 routes.get('/users/:id', UserController.show);
-routes.put('/users/:id', UserController.update);
-routes.delete('/users/:id', UserController.destroy);
 
 routes.use(AuthenticationMiddleware);
+
+routes.post('/products', schemaValidator(productSchema), ProductController.store);
+routes.put('/products/:id', ProductController.update);
+routes.delete('/products/:id', ProductController.destroy);
+
+routes.put('/users/:id', UserController.update);
+routes.delete('/users/:id', UserController.destroy);
 
 routes.post('/forgot_password', UserController.rescue);
 

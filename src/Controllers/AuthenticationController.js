@@ -14,9 +14,7 @@ class AuthenticationController {
       return res.status(401).json({ error: 'We need a e-mail or username' });
     }
 
-    const user = await UserModel.findOne({
-      whereClause: UserModel,
-    });
+    const user = await UserModel.findOne({ email: whereClause.email });
 
     if (!user) {
       return res.status(401).json({ error: 'User not found!' });

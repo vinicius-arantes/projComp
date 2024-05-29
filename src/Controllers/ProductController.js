@@ -1,15 +1,28 @@
 const ProductModel = require('../Models/ProductModels');
+const { parseJwt } = require('../utils/decrypt');
 
 class ProductController {
     async store(req, res){
 
         const { title, description, price} = req.body;
 
+        const Header = req.headers['authorization'];
+        const chefId = parseJwt(Header);
+
         if(!title || !description  || !price){
             res.status(404).json({message: "Some information is missing!"});
         }
 
-        const createdProduct = await ProductModel.create(req.body);
+        let newProduct = {};
+        
+        newProduct['title'] = req.body.title;
+        newProduct['description'] = req.body.description;
+        newProduct['price'] = req.body.price;
+        newProduct['image'] = req.body.image;
+        newProduct['chefId'] = chefId.user_name;
+        console.log(newProduct);
+
+        const createdProduct = await ProductModel.create(newProduct);
 
         return res.status(200).json({ message: 'Product added successfully!'});
     }

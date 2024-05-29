@@ -42,7 +42,9 @@ _Foram utilizadas as seguintes dependências:_
 ### **_CRUDs/Rotas_**
 
 > Foram desenvolvidas rotas de CRUD tanto para a tabela de usuários, quanto para a de produtos. Quando se trata da relação entre elas, pode ser citada a opção One-to-Many, pelo fato de que um 'usuário' pode possui vários 'produtos', e cada 'produto' possui apenas um 'usuário' produtor.
+>
 > Além disso, foram desenvolvidas rotas de autenticação, que geram para cada usuário autenticado uma token, que pode ser utilizada para acessar outras rotas restritas à esses usuário que realizaram a autenticação.
+>
 > Como já citado anteriormente, a utilização do nodemailer no projeto foi feita para o desenvolvimento da rota de recuperação de senha, na qual, o usuário que solicitar o mesmo, receberá um email com uma token única criada somente para essa finalidade.
 
 ### **_Vídeo explicando sobre o desenvolvimento do projeto_**
