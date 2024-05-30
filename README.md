@@ -26,6 +26,7 @@ _Foram utilizadas as seguintes dependências:_
 1. Para desenvolvimento:
 
    - "nodemon": Utilizado para o restart do server a partir de cada save.
+   - "jest": Empregado na implementação de testes automatizados para as funções do UserController.
 
 2. Nativas:
    - "mongoose": Toda a comunicação 'banco de dados -> server' foi realizada pelo mongoose.
@@ -41,9 +42,15 @@ _Foram utilizadas as seguintes dependências:_
 
 > Durante a execução do projeto, optei pela utilização do MongoDB para desenvolvimento. Diversos pontos guiaram minha escolha, a forma como ele dispõe os dados e as tabelas e, principalmente, o fato de tornar viável a utilização do mongoose. O mongoose me pareceu uma opção bem mais interessante que o Sequelize, por ser mais prático, direto e sucinto.
 
+### **_Uso de docker_**
+
+> Como o projeto não envolve colaboração com nenhum outro desenvolvedor, a utilização de um docker não teria suas melhores aplicação. Porém, para tornar o projeto mais complreto e considerar todas as possibilidades de desenvolvimento futuro, todo a estrutura de pastas, arquivos e versões do projeto foram replicadas em uma imagem do docker e estão disponíveis para utilização e aplicação.
+
 ### **_CRUDs/Rotas_**
 
 > Foram desenvolvidas rotas de CRUD tanto para a tabela de usuários, quanto para a de produtos. Quando se trata da relação entre elas, pode ser citada a opção One-to-Many, pelo fato de que um 'usuário' pode possui vários 'produtos', e cada 'produto' possui apenas um 'usuário' produtor.
+>
+> Porém, caso seja necessário, também foi implementado o sistema de análise das rotas/funções por testes automatizados. Na adição de bibliotecas, foi citada a aplicação do jest, que foi o meio pelo qual foi possível criar todos os possíveis testes automatizados do UserController.
 >
 > Além disso, foram desenvolvidas rotas de autenticação, que geram para cada usuário autenticado uma token, que pode ser utilizada para acessar outras rotas restritas à esses usuário que realizaram a autenticação.
 >
