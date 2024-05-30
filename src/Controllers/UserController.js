@@ -5,21 +5,31 @@ const mailer = require('../modules/mailer');
 class UserController {
     async store(req, res){
         
-        const { user_name, password, email } = req.body;
+        try {
+            const { user_name, password, email } = req.body;
 
-        if(!user_name || !password  || !email){
-            res.status(404).json({message: "Some information is missing!"});
+            if(!user_name || !password  || !email){
+                res.status(404).json({message: "Some information is missing!"});
+            }
+    
+            const createdUser = await UserModel.create(req.body);
+    
+            return res.status(200).json({ message: 'User created successfully!'});
+
+        } catch (error) {
+            
+            return res.status(400).json({ message: 'Unable to create a user!'});
         }
-
-        const createdUser = await UserModel.create(req.body);
-
-        return res.status(200).json({ message: 'User created successfully!'});
     }
 
     async index(req, res){
-        const users = await UserModel.find();
+        try {
+            const users = await UserModel.find();
 
-        return res.status(200).json( users );
+            return res.status(200).json( users );
+        } catch (error) {
+            return res.status(400).json({ message: "No user created yet!"});
+        }
     }
 
     async show(req, res){
@@ -27,10 +37,6 @@ class UserController {
             const { id } = req.params;
 
         const user = await UserModel.findById(id);
-
-        if(!user) {
-            return res.status(404).json({message: "User not found!"});
-        }
 
         return res.status(200).json( user );
 
