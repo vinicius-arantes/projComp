@@ -12,6 +12,7 @@
 * Express.js
 * DotEnv
 * Docker
+* Mongo
 
 ## :hammer_and_wrench: How to run the project
 
@@ -72,6 +73,14 @@ npm start
 - PUT <code>/products/:id</code> : Atualiza as atribuições ao produto.
 - DELETE <code>/products/:id</code> : Deleta o produto com o ID desejado.
 
+### Routes - Authentication
+
+- POST <code>/auth</code> : Autenticação de um usuário.
+
+### Routes - Upload
+
+- POST <code>/upload</code> : Realiza o upload de uma nova imagem.
+
 ### Body Examples
 
 - Criar um usuário:
@@ -94,6 +103,16 @@ npm start
     "description": "Ingredientes: Frango, Arroz, Feijão e Ovo",
     "price": 32.9,
     "image": "https://image/new-image"
+  },
+]
+```
+- Autentica um usuário:
+```json
+[
+  { 
+    "user_name": "name_user",
+    "email": "user@gmail.com",
+    "password": "123"
   },
 ]
 ```
