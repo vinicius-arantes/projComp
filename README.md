@@ -64,6 +64,7 @@ npm start
 - POST <code>/users</code> : Cria um novo usuário.
 - PUT <code>/users/:id</code> : Atualiza as atribuições ao usuário.
 - DELETE <code>/users/:id</code> : Deleta o usuário com o ID desejado.
+- POST <code>/forgot_password</code> :  Envia um email de recuperação de senha.
 
 ### Routes - Products
 
