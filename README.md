@@ -170,6 +170,3 @@ _Foram utilizadas as seguintes dependências:_
 >
 > Como já citado anteriormente, a utilização do nodemailer no projeto foi feita para o desenvolvimento da rota de recuperação de senha, na qual, o usuário que solicitar o mesmo, receberá um email com uma token única criada somente para essa finalidade.
 
-### **_Vídeo explicando sobre o desenvolvimento do projeto_**
-
-> [Vídeo Explicativo](https://www.youtube.com/watch?v=HdW2BMRBDZ8&list=PLR8JXremim5BWiO-MCaAffQYwFZrD11-j&index=2)
